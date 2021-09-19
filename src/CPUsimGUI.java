@@ -1,8 +1,12 @@
 import javax.swing.*;
+import javax.swing.text.AttributeSet;
+import javax.swing.text.SimpleAttributeSet;
+import javax.swing.text.StyleConstants;
+import javax.swing.text.StyleContext;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.File;
+import java.io.*;
 
 //GUI and its various components and buttons
 public class CPUsimGUI extends JFrame {
@@ -49,8 +53,8 @@ public class CPUsimGUI extends JFrame {
     private JTextArea Guide;
 
     //GUI buttons and their actions
-    public CPUsimGUI(String title){
-        super (title);
+    public CPUsimGUI(String title) {
+        super(title);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setContentPane(mainPanel);
         this.pack();
@@ -66,31 +70,16 @@ public class CPUsimGUI extends JFrame {
                 //reset(e);
             }
         });
-        loadButton.addActionListener(new ActionListener() { //load from file button action
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                if(e.getSource()==loadButton){
-                    JFileChooser loadFile = new JFileChooser();
-                    int resp = loadFile.showOpenDialog(null);//select files to open
-                    if (resp == JFileChooser.APPROVE_OPTION){
-
-                    }
-                }
-            }
-        });
-        haltButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                //break; //halting the program
-            }
-        });
+        //load from file button action
     }
-//Main
+
+    //Main
     public static void main(String[] args) {
         JFrame frame = new CPUsimGUI("CPU Simulator");
         frame.setVisible(true);
     }
-// Code for components for GUI button text area
+
+    // Code for components for GUI button text area
     private void createUIComponents() {
         // TODO: place custom component creation code here
     }
@@ -100,5 +89,20 @@ public class CPUsimGUI extends JFrame {
         textPane.setCaretPosition(length);
         textPane.replaceSelection(message);
     }
+            /*
+        Set text in JTextArea line by line.
+         */
+            private void appendToPane(JTextPane tp, String msg, Color c)
+            {
+                msg = msg+"\n";
+                StyleContext sc = StyleContext.getDefaultStyleContext();
+                AttributeSet aset = sc.addAttribute(SimpleAttributeSet.EMPTY, StyleConstants.Foreground, c);
+                aset = sc.addAttribute(aset, StyleConstants.FontFamily, "Andale Mono");
+                aset = sc.addAttribute(aset,StyleConstants.FontSize,12);
+                int len = tp.getDocument().getLength();
+                tp.setCaretPosition(len);
+                tp.setCharacterAttributes(aset, false);
+                tp.replaceSelection(msg);
+            }
 
 }

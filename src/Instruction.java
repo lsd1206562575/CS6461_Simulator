@@ -90,7 +90,7 @@ public class Instruction {
     /*
     Call the function for exact instruction based on the input
     */
-    public boolean setInstruction(String [] instruction){
+    public boolean setInstruction(String[] instruction){
         if(instruction[0].equals("LDR") || instruction[0].equals("ldr")){
             return LDR(instruction[1]);
         }
@@ -131,7 +131,7 @@ public class Instruction {
     }
 
     /*
-        The function to process LDR instruction.
+        The function to process STR instruction.
          */
     public boolean STR(String instructionData){
         String[] instruction = instructionData.split(",");
@@ -184,6 +184,7 @@ public class Instruction {
     public void derectLDR(int registerNumber, int iRegister, int address){
         setGRegVal(registerNumber,stringToInt((String)simulator_memory.memoryArray[address + getIRegVal(iRegister)][1]));
     }
+
     /*
     make data more user friendly.
      */
