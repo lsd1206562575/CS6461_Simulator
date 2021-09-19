@@ -1,12 +1,12 @@
 public class Register {
-    public int bit;
+    public int address;
     public int value;
-    public Register(int bit){
-        this.bit= bit;
+    public Register(int address){
+        this.address = address;
         this.value=0;
     }
-    public Register(int bit, int value){
-        this.bit=bit;
+    public Register(int address, int value){
+        this.address = address;
         this.value=value;
     }
     public void setValue(int value){
