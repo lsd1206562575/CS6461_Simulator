@@ -11,14 +11,9 @@ import java.io.*;
 //GUI and its various components and buttons
 public class CPUsimGUI extends JFrame {
     private JPanel mainPanel;
-    private JScrollPane memScroll;
-    private JPanel memPanel;
-    private JTable mem;
     private JButton lineButton;
     private JButton multiLineButton;
     private JButton loadButton;
-    private JButton haltButton;
-    private JButton restartButton;
     private JButton exitButton;
     private JPanel buttonPanel;
     private JPanel registerValue;
@@ -50,7 +45,7 @@ public class CPUsimGUI extends JFrame {
     private JLabel ixr3;
     private JLabel mfr;
     private JTextField mfrVal;
-    private JTextArea Guide;
+
 
     //GUI buttons and their actions
     public CPUsimGUI(String title) {
@@ -58,18 +53,40 @@ public class CPUsimGUI extends JFrame {
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setContentPane(mainPanel);
         this.pack();
+        //set the text fields uneditable
+        gpr1Val.setEditable(false);
+        gpr2Val.setEditable(false);
+        gpr3Val.setEditable(false);
+        ixr1Val.setEditable(false);
+        ixr2Val.setEditable(false);
+        ixr3Val.setEditable(false);
+        marVal.setEditable(false);
+        mbrVal.setEditable(false);
+        irVal.setEditable(false);
+        mfrVal.setEditable(false);
+        pcVal.setEditable(false);
+        textField2.setEditable(false);
+
+        //background colors
+        gpr1Val.setBackground(Color.decode("#D6FAFF"));
+        gpr2Val.setBackground(Color.decode("#D6FAFF"));
+        gpr3Val.setBackground(Color.decode("#D6FAFF"));
+        ixr1Val.setBackground(Color.decode("#D6FAFF"));
+        ixr2Val.setBackground(Color.decode("#D6FAFF"));
+        ixr3Val.setBackground(Color.decode("#D6FAFF"));
+        marVal.setBackground(Color.decode("#D6FAFF"));
+        mbrVal.setBackground(Color.decode("#D6FAFF"));
+        irVal.setBackground(Color.decode("#D6FAFF"));
+        mfrVal.setBackground(Color.decode("#D6FAFF"));
+        pcVal.setBackground(Color.decode("#D6FAFF"));
+        textField2.setBackground(Color.decode("#D6FAFF"));
         exitButton.addActionListener(new ActionListener() { //Exit button
             @Override
             public void actionPerformed(ActionEvent e) {
                 System.exit(0);
             }
         });
-        restartButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                //reset(e);
-            }
-        });
+
         //load from file button action
     }
 
