@@ -8,6 +8,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 
+import static javax.swing.BorderFactory.createLineBorder;
+
 //GUI and its various components and buttons
 public class CPUsimGUI extends JFrame {
     private JPanel mainPanel;
@@ -45,6 +47,7 @@ public class CPUsimGUI extends JFrame {
     private JLabel ixr3;
     private JLabel mfr;
     private JTextField mfrVal;
+    private JTextPane output;
 
 
     //GUI buttons and their actions
@@ -80,6 +83,18 @@ public class CPUsimGUI extends JFrame {
         mfrVal.setBackground(Color.decode("#D6FAFF"));
         pcVal.setBackground(Color.decode("#D6FAFF"));
         textField2.setBackground(Color.decode("#D6FAFF"));
+
+        //show.setBorder(createLoweredBevelBorder());
+        show.setBorder(createLineBorder(new Color(255,255,255),20));
+        registerValue.setAlignmentX(20);
+
+        //set output uneditable by users
+        output.setEditable(false);
+
+        //input field hint
+
+
+
         exitButton.addActionListener(new ActionListener() { //Exit button
             @Override
             public void actionPerformed(ActionEvent e) {
