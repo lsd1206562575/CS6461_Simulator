@@ -88,6 +88,18 @@ public class CPUsimGUI extends JFrame {
         });
 
         //load from file button action
+        loadButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if(e.getSource()==loadButton){
+                    JFileChooser loadFile = new JFileChooser();
+                    int resp = loadFile.showOpenDialog(null);
+                    if (resp == JFileChooser.APPROVE_OPTION){
+                        //forward to input over here...!!!!
+                    }
+                }
+            }
+        });
     }
 
     //Main
