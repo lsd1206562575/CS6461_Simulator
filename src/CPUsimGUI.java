@@ -97,6 +97,7 @@ public class CPUsimGUI extends JFrame {
         //set output uneditable by users
         output.setEditable(false);
 
+        setMemoryPanel();
         usedMem.setVisible(true);
 
         runButton.addActionListener(new ActionListener() {
@@ -187,7 +188,6 @@ public class CPUsimGUI extends JFrame {
                             ex.printStackTrace();
                         }
                         String inputHexData;
-                        while (true) {
                             try {
                                 while (((inputHexData = readFile.readLine()) != null)) {
                                     String[] binaryData = null;
@@ -196,13 +196,14 @@ public class CPUsimGUI extends JFrame {
                                     String address_mem = Integer.toBinaryString(address);
                                     String value = Integer.toBinaryString(Integer.parseInt(binaryData[1],16));
                                     data.simulator_memory.putMem(address,value);
+                                    setMemoryPanel();
+                                    usedMem.setVisible(true);
                                 }
                             } catch (IOException e2) {
                                 e2.printStackTrace();
                             }
                         }
                     }
-                }
             }
         });
     }
@@ -212,8 +213,6 @@ public class CPUsimGUI extends JFrame {
 
         JFrame frame = new CPUsimGUI("CPU Simulator");
         frame.setVisible(true);
-        CPUsimGUI cpuSim = new CPUsimGUI("simulator");
-        cpuSim.setMomoryPanel();
     }
 
     // Code for components for GUI button text area
@@ -229,21 +228,21 @@ public class CPUsimGUI extends JFrame {
     }
 
     public void refreshInterface() {
-        gpr1Val.setText(data.intToString(16, data.GPR1.value));
-        gpr2Val.setText(data.intToString(16, data.GPR2.value));
-        gpr3Val.setText(data.intToString(16, data.GPR3.value));
+        ixr1Val.setText(data.intToString(16, data.IXR1.value));
+        ixr2Val.setText(data.intToString(16, data.IXR2.value));
+        ixr3Val.setText(data.intToString(16, data.IXR3.value));
         marVal.setText(data.intToString(12, data.MAR.value));
         mbrVal.setText(data.intToString(16, data.MBR.value));
         irVal.setText(data.intToString(16, data.IR.value));
-        pcVal.setText(data.intToString(12, data.PC.value));
-        gpr0Val.setText(data.intToString(16, data.GPR1.value));
+        pcVal.setText(data.intToString(16, data.PC.value));
+        gpr0Val.setText(data.intToString(16, data.GPR0.value));
         gpr1Val.setText(data.intToString(16, data.GPR1.value));
-        gpr2Val.setText(data.intToString(16, data.GPR1.value));
-        gpr3Val.setText(data.intToString(16, data.GPR1.value));
-        setMomoryPanel();
+        gpr2Val.setText(data.intToString(16, data.GPR2.value));
+        gpr3Val.setText(data.intToString(16, data.GPR3.value));
+        setMemoryPanel();
     }
     //set the content of memory panel
-    public void setMomoryPanel() {
+    public void setMemoryPanel() {
         final String[] columnNames = {"Address", "Value"};
         TableModel dataModel = new DefaultTableModel(data.simulator_memory.memoryArray, columnNames);
         usedMem.setModel(dataModel);
