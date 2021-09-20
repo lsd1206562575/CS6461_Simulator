@@ -6,7 +6,7 @@ import javax.swing.text.StyleContext;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.File;
+import java.io.*;
 
 import static javax.swing.BorderFactory.createLineBorder;
 
@@ -51,7 +51,7 @@ public class CPUsimGUI extends JFrame {
     private JScrollPane mempanscroll;
     private JTable table1;
 
-
+    Instruction data = new Instruction();
     //GUI buttons and their actions
     public CPUsimGUI(String title) {
         super(title);
@@ -96,7 +96,6 @@ public class CPUsimGUI extends JFrame {
         //input field hint
 
 
-
         exitButton.addActionListener(new ActionListener() { //Exit button
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -108,11 +107,33 @@ public class CPUsimGUI extends JFrame {
         loadButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if(e.getSource()==loadButton){
+                if (e.getSource() == loadButton) {
                     JFileChooser loadFile = new JFileChooser();
                     int resp = loadFile.showOpenDialog(null);
-                    if (resp == JFileChooser.APPROVE_OPTION){
-                        //forward to input over here...!!!!
+                    if (resp == JFileChooser.APPROVE_OPTION) {
+                        //load hex data and turn it into binary then store it into memory
+                        File file = loadFile.getSelectedFile();
+                        BufferedReader readFile = null;
+                        try {
+                            readFile = new BufferedReader(new FileReader(file));
+                        } catch (FileNotFoundException ex) {
+                            ex.printStackTrace();
+                        }
+                        String inputHexData;
+                        while (true) {
+                            try {
+                                while (((inputHexData = readFile.readLine()) != null)) {
+                                    String[] binaryData = null;
+                                    binaryData = inputHexData.split(" ");
+                                    int address = Integer.valueOf(binaryData[0], 16);
+                                    String address_mem = Integer.toBinaryString(address);
+                                    int value = Integer.valueOf(binaryData[1], 16);
+                                    data.simulator_memory.putMem();
+                                }
+                            } catch (IOException e2) {
+                                e2.printStackTrace();
+                            }
+                        }
                     }
                 }
             }
@@ -129,6 +150,7 @@ public class CPUsimGUI extends JFrame {
     private void createUIComponents() {
         // TODO: place custom component creation code here
     }
+
     private void addToInput(JTextPane textPane, String message, Color color){
         message = message+"\n";
         int length = textPane.getDocument().getLength();
