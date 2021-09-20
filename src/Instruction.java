@@ -53,7 +53,7 @@ public class Instruction {
     }
 
     /*
-    Pass a index register number and value. The function will set the index register value automatically.
+    Pass an index register number and value. The function will set the index register value automatically.
      */
     public void setIRegVal(int indexRegNum, int value){
         if (indexRegNum == 0){

@@ -50,7 +50,7 @@ public class CPUsimGUI extends JFrame {
     private JTextPane output;
     private JPanel memPanel;
     private JScrollPane memPanScroll;
-    private JTable mem;
+    private JTextField usedMem;
 
 
     //GUI buttons and their actions
@@ -94,7 +94,8 @@ public class CPUsimGUI extends JFrame {
         //set output uneditable by users
         output.setEditable(false);
 
-        //input field hint
+        usedMem.setVisible(false);
+
 
 
 
@@ -135,6 +136,11 @@ public class CPUsimGUI extends JFrame {
         int length = textPane.getDocument().getLength();
         textPane.setCaretPosition(length);
         textPane.replaceSelection(message);
+    }
+
+    //set the content of memory panel
+    public void setMomoryPanel(String in) {
+        this.usedMem.setText(in);
     }
             /*
         Set text in JTextArea line by line.

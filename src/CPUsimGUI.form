@@ -366,7 +366,7 @@
             <properties/>
             <border type="none"/>
             <children>
-              <component id="d30db" class="javax.swing.JTable" binding="mem">
+              <component id="ee40f" class="javax.swing.JTextField" binding="usedMem">
                 <constraints/>
                 <properties/>
               </component>
