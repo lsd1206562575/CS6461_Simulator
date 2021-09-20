@@ -49,7 +49,7 @@ public class CPUsimGUI extends JFrame {
     private JTextField mfrVal;
     private JTextPane output;
     private JScrollPane mempanscroll;
-    private JTable table1;
+    private JTextField usedMem;
 
 
     //GUI buttons and their actions
@@ -71,6 +71,7 @@ public class CPUsimGUI extends JFrame {
         mfrVal.setEditable(false);
         pcVal.setEditable(false);
         textField2.setEditable(false);
+        usedMem.setVisible(false);
 
         //background colors
         gpr1Val.setBackground(Color.decode("#D6FAFF"));
@@ -114,6 +115,7 @@ public class CPUsimGUI extends JFrame {
                     if (resp == JFileChooser.APPROVE_OPTION){
                         //forward to input over here...!!!!
                     }
+
                 }
             }
         });
@@ -135,6 +137,11 @@ public class CPUsimGUI extends JFrame {
         textPane.setCaretPosition(length);
         textPane.replaceSelection(message);
     }
+
+    //show used memory in memory panel
+    private void setMemoryPanelContent(String in){
+        this.usedMem.setText(in);
+    }
             /*
         Set text in JTextArea line by line.
          */
@@ -151,4 +158,8 @@ public class CPUsimGUI extends JFrame {
                 tp.replaceSelection(msg);
             }
 
+
+
 }
+
+

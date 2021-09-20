@@ -4,6 +4,7 @@ public class Program {
     private Register mar;
     private Register mbr;
     private Register ir;
+    private Memory mem;
 
     public Program() {
 
