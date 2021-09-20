@@ -15,8 +15,8 @@ import static javax.swing.BorderFactory.createLineBorder;
 //GUI and its various components and buttons
 public class CPUsimGUI extends JFrame {
     private JPanel mainPanel;
-    private JButton lineButton;
-    private JButton multiLineButton;
+    private JButton runButton;
+    private JButton resetButton;
     private JButton loadButton;
     private JButton exitButton;
     private JPanel buttonPanel;
@@ -38,6 +38,7 @@ public class CPUsimGUI extends JFrame {
     private JTextField marVal;
     private JTextField mbrVal;
     private JTextField irVal;
+    private JTextField gpr0Val;
     private JTextField gpr1Val;
     private JTextField gpr2Val;
     private JTextField gpr3Val;
@@ -96,11 +97,72 @@ public class CPUsimGUI extends JFrame {
         //set output uneditable by users
         output.setEditable(false);
 
-        usedMem.setVisible(false);
+        setMemoryPanel();
+        usedMem.setVisible(true);
 
-        setMomoryPanel();
+        runButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String instruction = Input.getText();
+                int i = 0;
+                if (!instruction.equals("")) {
+                    String[] Instruction = instruction.split("\n");
+                    for (; i < Instruction.length; i++) {
+                        Input.setText("");
+                        for (int j = 0; j < Instruction.length; j++) {
+                            if (j == i) {
+                                appendToPane(Input, Instruction[j], Color.red);
+                                StyleContext sc = StyleContext.getDefaultStyleContext();
+                                AttributeSet aset = sc.addAttribute(SimpleAttributeSet.EMPTY, StyleConstants.Foreground, Color.black);
+                                aset = sc.addAttribute(aset, StyleConstants.FontFamily, "Andale Mono");
+                                aset = sc.addAttribute(aset, StyleConstants.FontSize, 12);
+                                int len = Input.getDocument().getLength();
+                                Input.setCaretPosition(len);
+                                Input.setCharacterAttributes(aset, false);
+                                Input.replaceSelection("");
+                            } else {
+                                appendToPane(Input, Instruction[j], Color.black);
+                            }
+                        }
 
+                    String[] instructionArray = Instruction[i].split(" ");
+                    boolean result = data.setInstruction(instructionArray);
+                    if (result) {
+                        refreshInterface();
+                    } else {
+                        break;
+                    }
+                    }
+                    if (i == Instruction.length) {
+                        Input.setText("");
+                        JOptionPane.showMessageDialog(mainPanel, "Program Finished!", "Message", JOptionPane.INFORMATION_MESSAGE);
+                    } else {
+                        JOptionPane.showMessageDialog(mainPanel, "Line " + (i) + " Wrong!", "Message", JOptionPane.ERROR_MESSAGE);
+                    }
+                }
+            }
+        });
 
+        resetButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                data.MAR.value = 0;
+                data.MBR.value = 0;
+                data.IR.value = 0;
+                data.PC.value = 0;
+                data.IXR1.value = 0;
+                data.IXR2.value = 0;
+                data.IXR3.value = 0;
+                data.GPR0.value = 0;
+                data.GPR1.value = 0;
+                data.GPR2.value = 0;
+                data.GPR3.value = 0;
+                for(int i=0;i<2048;i++){
+                    data.simulator_memory.memoryArray[i][1] = "0000,0000,0000,0000";
+                }
+                refreshInterface();
+            }
+        });
 
         exitButton.addActionListener(new ActionListener() { //Exit button
             @Override
@@ -126,7 +188,6 @@ public class CPUsimGUI extends JFrame {
                             ex.printStackTrace();
                         }
                         String inputHexData;
-                        while (true) {
                             try {
                                 while (((inputHexData = readFile.readLine()) != null)) {
                                     String[] binaryData = null;
@@ -134,15 +195,15 @@ public class CPUsimGUI extends JFrame {
                                     int address = Integer.valueOf(binaryData[0], 16);
                                     String address_mem = Integer.toBinaryString(address);
                                     String value = Integer.toBinaryString(Integer.parseInt(binaryData[1],16));
-                                    data.simulator_memory.putMem(address_mem,value);
-                                    setMomoryPanel();
+                                    data.simulator_memory.putMem(address,value);
+                                    setMemoryPanel();
+                                    usedMem.setVisible(true);
                                 }
                             } catch (IOException e2) {
                                 e2.printStackTrace();
                             }
                         }
                     }
-                }
             }
         });
     }
@@ -152,8 +213,6 @@ public class CPUsimGUI extends JFrame {
 
         JFrame frame = new CPUsimGUI("CPU Simulator");
         frame.setVisible(true);
-        CPUsimGUI cpuSim = new CPUsimGUI("simulator");
-        cpuSim.setMomoryPanel();
     }
 
     // Code for components for GUI button text area
@@ -168,8 +227,22 @@ public class CPUsimGUI extends JFrame {
         textPane.replaceSelection(message);
     }
 
+    public void refreshInterface() {
+        ixr1Val.setText(data.intToString(16, data.IXR1.value));
+        ixr2Val.setText(data.intToString(16, data.IXR2.value));
+        ixr3Val.setText(data.intToString(16, data.IXR3.value));
+        marVal.setText(data.intToString(12, data.MAR.value));
+        mbrVal.setText(data.intToString(16, data.MBR.value));
+        irVal.setText(data.intToString(16, data.IR.value));
+        pcVal.setText(data.intToString(16, data.PC.value));
+        gpr0Val.setText(data.intToString(16, data.GPR0.value));
+        gpr1Val.setText(data.intToString(16, data.GPR1.value));
+        gpr2Val.setText(data.intToString(16, data.GPR2.value));
+        gpr3Val.setText(data.intToString(16, data.GPR3.value));
+        setMemoryPanel();
+    }
     //set the content of memory panel
-    public void setMomoryPanel() {
+    public void setMemoryPanel() {
         final String[] columnNames = {"Address", "Value"};
         TableModel dataModel = new DefaultTableModel(data.simulator_memory.memoryArray, columnNames);
         usedMem.setModel(dataModel);
