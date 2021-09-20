@@ -22,7 +22,6 @@ public class CPUsimGUI extends JFrame {
     private JPanel buttonPanel;
     private JPanel registerValue;
     private JTextPane Input;
-    private JScrollPane inputScroll;
     private JPanel inputPanel;
     private JPanel show;
     private JLabel PC;
@@ -54,6 +53,7 @@ public class CPUsimGUI extends JFrame {
     private JPanel memPanel;
     private JScrollPane memPanScroll;
     private JTable usedMem;
+    private JTextField input;
 
     Instruction data = new Instruction();
     //GUI buttons and their actions
@@ -99,7 +99,7 @@ public class CPUsimGUI extends JFrame {
 
         setMemoryPanel();
         usedMem.setVisible(true);
-
+        /*
         runButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -142,6 +142,8 @@ public class CPUsimGUI extends JFrame {
                 }
             }
         });
+        */
+
 
         resetButton.addActionListener(new ActionListener() {
             @Override
@@ -198,6 +200,7 @@ public class CPUsimGUI extends JFrame {
                                     data.simulator_memory.putMem(address,value);
                                     setMemoryPanel();
                                     usedMem.setVisible(true);
+                                    output.setText(output.getText()+"\n"+address + ": " + value );
                                 }
                             } catch (IOException e2) {
                                 e2.printStackTrace();
