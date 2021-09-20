@@ -126,7 +126,6 @@ public class CPUsimGUI extends JFrame {
                             ex.printStackTrace();
                         }
                         String inputHexData;
-                        while (true) {
                             try {
                                 while (((inputHexData = readFile.readLine()) != null)) {
                                     String[] binaryData = null;
@@ -134,13 +133,13 @@ public class CPUsimGUI extends JFrame {
                                     int address = Integer.valueOf(binaryData[0], 16);
                                     String address_mem = Integer.toBinaryString(address);
                                     String value = Integer.toBinaryString(Integer.parseInt(binaryData[1],16));
-                                    data.simulator_memory.putMem(address_mem,value);
+                                    data.simulator_memory.putMem(address,value);
                                     setMomoryPanel();
+                                    usedMem.setVisible(true);
                                 }
                             } catch (IOException e2) {
                                 e2.printStackTrace();
                             }
-                        }
                     }
                 }
             }

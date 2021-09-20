@@ -46,8 +46,8 @@ public class Memory {
         System.out.println(new Memory().toString());
         //System.out.println(new Memory().showUsedMemory());
     }
-    public void putMem(String i ,String value){
-        memoryArray[Integer.parseInt(i,10)][0]=Integer.parseInt(i,10);
-        memoryArray[Integer.parseInt(i,10)][1]=value;
+    public void putMem(int i ,String value){
+        memoryArray[i-1][0]=Integer.parseInt(String.valueOf(i),10);
+        memoryArray[i-1][1]=value;
     }
 }
