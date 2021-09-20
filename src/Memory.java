@@ -1,3 +1,5 @@
+import com.sun.xml.internal.fastinfoset.util.StringArray;
+
 //Simple memory class
 public class Memory {
     //setting memory to 2048 and exp to 4096
@@ -21,11 +23,13 @@ public class Memory {
 
     }
     //show used memory as a string output,
-    public Object showUsedMemory(){
-        String output = " ";
-        for (int i = 0; i < this.memoryArray.length; i++) {
+    /*
+    public StringArray showUsedMemory(){
+        StringArray output = new StringArray();
+        for (int i = 0 , j = 0; i < this.memoryArray.length; i++) {
             if (this.memoryArray[i][1] != "0000,0000,0000,0000") {
-                output = output + memoryArray[i][0]+":" + memoryArray[i][1] + "\n";
+                output.add(this.memoryArray[i][1]);
+                j++;
             }
             if(output.equals(" ")) {
                 output = "Nothing in memory";
@@ -34,13 +38,16 @@ public class Memory {
         }
         return output;
     }
+    */
+
     //for testing
     public static void main(String[] args){
 
         System.out.println(new Memory().toString());
-        System.out.println(new Memory().showUsedMemory());
+        //System.out.println(new Memory().showUsedMemory());
     }
     public void putMem(String i ,String value){
-        memoryArray[Integer.parseInt(i)][1]=value;
+        memoryArray[Integer.parseInt(i,10)][0]=Integer.parseInt(i,10);
+        memoryArray[Integer.parseInt(i,10)][1]=value;
     }
 }

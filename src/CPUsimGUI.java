@@ -1,4 +1,6 @@
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
 import javax.swing.text.AttributeSet;
 import javax.swing.text.SimpleAttributeSet;
 import javax.swing.text.StyleConstants;
@@ -50,7 +52,7 @@ public class CPUsimGUI extends JFrame {
     private JTextPane output;
     private JPanel memPanel;
     private JScrollPane memPanScroll;
-    private JTextField usedMem;
+    private JTable usedMem;
 
     Instruction data = new Instruction();
     //GUI buttons and their actions
@@ -96,6 +98,8 @@ public class CPUsimGUI extends JFrame {
 
         usedMem.setVisible(false);
 
+        setMomoryPanel();
+
 
 
         exitButton.addActionListener(new ActionListener() { //Exit button
@@ -131,6 +135,7 @@ public class CPUsimGUI extends JFrame {
                                     String address_mem = Integer.toBinaryString(address);
                                     String value = Integer.toBinaryString(Integer.parseInt(binaryData[1],16));
                                     data.simulator_memory.putMem(address_mem,value);
+                                    setMomoryPanel();
                                 }
                             } catch (IOException e2) {
                                 e2.printStackTrace();
@@ -144,8 +149,11 @@ public class CPUsimGUI extends JFrame {
 
     //Main
     public static void main(String[] args) {
+
         JFrame frame = new CPUsimGUI("CPU Simulator");
         frame.setVisible(true);
+        CPUsimGUI cpuSim = new CPUsimGUI("simulator");
+        cpuSim.setMomoryPanel();
     }
 
     // Code for components for GUI button text area
@@ -161,8 +169,11 @@ public class CPUsimGUI extends JFrame {
     }
 
     //set the content of memory panel
-    public void setMomoryPanel(String in) {
-        this.usedMem.setText(in);
+    public void setMomoryPanel() {
+        final String[] columnNames = {"Address", "Value"};
+        TableModel dataModel = new DefaultTableModel(data.simulator_memory.memoryArray, columnNames);
+        usedMem.setModel(dataModel);
+        System.out.println(data.simulator_memory.toString());
     }
             /*
         Set text in JTextArea line by line.
