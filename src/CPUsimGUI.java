@@ -48,8 +48,9 @@ public class CPUsimGUI extends JFrame {
     private JLabel mfr;
     private JTextField mfrVal;
     private JTextPane output;
-    private JScrollPane mempanscroll;
-    private JTable table1;
+    private JPanel memPanel;
+    private JScrollPane memPanScroll;
+    private JTable mem;
 
 
     //GUI buttons and their actions
