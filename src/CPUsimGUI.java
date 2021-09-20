@@ -175,20 +175,20 @@ public class CPUsimGUI extends JFrame {
         usedMem.setModel(dataModel);
         System.out.println(data.simulator_memory.toString());
     }
-            /*
-        Set text in JTextArea line by line.
-         */
-            private void appendToPane(JTextPane tp, String msg, Color c)
-            {
-                msg = msg+"\n";
-                StyleContext sc = StyleContext.getDefaultStyleContext();
-                AttributeSet aset = sc.addAttribute(SimpleAttributeSet.EMPTY, StyleConstants.Foreground, c);
-                aset = sc.addAttribute(aset, StyleConstants.FontFamily, "Andale Mono");
-                aset = sc.addAttribute(aset,StyleConstants.FontSize,12);
-                int len = tp.getDocument().getLength();
-                tp.setCaretPosition(len);
-                tp.setCharacterAttributes(aset, false);
-                tp.replaceSelection(msg);
-            }
+    /*
+Set text in JTextArea line by line.
+ */
+    private void appendToPane(JTextPane tp, String msg, Color c)
+    {
+        msg = msg+"\n";
+        StyleContext sc = StyleContext.getDefaultStyleContext();
+        AttributeSet aset = sc.addAttribute(SimpleAttributeSet.EMPTY, StyleConstants.Foreground, c);
+        aset = sc.addAttribute(aset, StyleConstants.FontFamily, "Andale Mono");
+        aset = sc.addAttribute(aset,StyleConstants.FontSize,12);
+        int len = tp.getDocument().getLength();
+        tp.setCaretPosition(len);
+        tp.setCharacterAttributes(aset, false);
+        tp.replaceSelection(msg);
+    }
 
 }
