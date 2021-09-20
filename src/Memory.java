@@ -21,7 +21,7 @@ public class Memory {
 
     }
     //show used memory as a string output,
-    public String showUsedMemory(){
+    public Object showUsedMemory(){
         String output = " ";
         for (int i = 0; i < this.memoryArray.length; i++) {
             if (this.memoryArray[i][1] != "0000,0000,0000,0000") {
