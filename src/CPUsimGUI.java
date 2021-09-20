@@ -29,7 +29,6 @@ public class CPUsimGUI extends JFrame {
     private JLabel MBR;
     private JLabel IR;
     private JTextField pcVal;
-    private JTextField textField2;
     private JLabel gpr0;
     private JLabel gpr1;
     private JLabel gpr2;
@@ -101,7 +100,7 @@ public class CPUsimGUI extends JFrame {
 
         setMemoryPanel();
         usedMem.setVisible(true);
-        /*
+
         runButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -144,7 +143,7 @@ public class CPUsimGUI extends JFrame {
                 }
             }
         });
-        */
+
 
 
         resetButton.addActionListener(new ActionListener() {
