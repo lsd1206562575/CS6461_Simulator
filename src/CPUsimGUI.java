@@ -201,7 +201,7 @@ public class CPUsimGUI extends JFrame {
                                     data.simulator_memory.putMem(address,value);
                                     setMemoryPanel();
                                     usedMem.setVisible(true);
-                                    output.setText(output.getText()+"\n"+address + ": " + value );
+                                    output.setText(output.getText()+"\n"+(address - 1)+ ": " + value );
                                 }
                             } catch (IOException e2) {
                                 e2.printStackTrace();
