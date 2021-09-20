@@ -1,6 +1,4 @@
 import javax.swing.*;
-import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableModel;
 import javax.swing.text.AttributeSet;
 import javax.swing.text.SimpleAttributeSet;
 import javax.swing.text.StyleConstants;
@@ -50,9 +48,8 @@ public class CPUsimGUI extends JFrame {
     private JLabel mfr;
     private JTextField mfrVal;
     private JTextPane output;
-    private JScrollPane memPanScroll;
-    private JTable mem;
-    private JPanel memPanel;
+    private JScrollPane mempanscroll;
+    private JTable table1;
 
 
     //GUI buttons and their actions
@@ -121,13 +118,6 @@ public class CPUsimGUI extends JFrame {
             }
         });
     }
-
-    //Show memory panel
-    public void showMemPanel(){
-        memPanel.add(memPanScroll);
-        memPanScroll.setViewportView(mem);
-    }
-
 
     //Main
     public static void main(String[] args) {
