@@ -1,5 +1,3 @@
-import com.sun.xml.internal.fastinfoset.util.StringArray;
-
 //Simple memory class
 public class Memory {
     //setting memory to 2048 and exp to 4096
@@ -15,11 +13,11 @@ public class Memory {
 
     @Override
     public String toString(){
-        String output = new String("");
-        for(int a = 0; a < this.memoryArray.length;a++){
-            output = output + memoryArray[a][0]+":" + memoryArray[a][1] + "\n";
+        StringBuilder output = new StringBuilder();
+        for (Object[] objects : this.memoryArray) {
+            output.append(objects[0]).append(":").append(objects[1]).append("\n");
         }
-        return output;
+        return output.toString();
 
     }
     //show used memory as a string output,
@@ -43,7 +41,7 @@ public class Memory {
     //for testing
     public static void main(String[] args){
 
-        System.out.println(new Memory().toString());
+        System.out.println(new Memory());
         //System.out.println(new Memory().showUsedMemory());
     }
     public void putMem(int i ,String value){
