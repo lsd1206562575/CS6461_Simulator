@@ -63,6 +63,7 @@ public class CPUsimGUI extends JFrame {
         this.setContentPane(mainPanel);
         this.pack();
         //set the text fields uneditable
+        gpr0Val.setEditable(false);
         gpr1Val.setEditable(false);
         gpr2Val.setEditable(false);
         gpr3Val.setEditable(false);
@@ -74,9 +75,10 @@ public class CPUsimGUI extends JFrame {
         irVal.setEditable(false);
         mfrVal.setEditable(false);
         pcVal.setEditable(false);
-        textField2.setEditable(false);
+
 
         //background colors
+        gpr0Val.setBackground(Color.decode("#D6FAFF"));
         gpr1Val.setBackground(Color.decode("#D6FAFF"));
         gpr2Val.setBackground(Color.decode("#D6FAFF"));
         gpr3Val.setBackground(Color.decode("#D6FAFF"));
@@ -88,7 +90,7 @@ public class CPUsimGUI extends JFrame {
         irVal.setBackground(Color.decode("#D6FAFF"));
         mfrVal.setBackground(Color.decode("#D6FAFF"));
         pcVal.setBackground(Color.decode("#D6FAFF"));
-        textField2.setBackground(Color.decode("#D6FAFF"));
+
 
         //show.setBorder(createLoweredBevelBorder());
         show.setBorder(createLineBorder(new Color(255,255,255),20));
