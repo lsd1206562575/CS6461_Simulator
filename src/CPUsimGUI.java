@@ -192,8 +192,8 @@ public class CPUsimGUI extends JFrame {
                                 while (((inputHexData = readFile.readLine()) != null)) {
                                     String[] binaryData = null;
                                     binaryData = inputHexData.split(" ");
-                                    int address = Integer.valueOf(binaryData[0], 10);
-//                                    String address_mem = Integer.toBinaryString(address);
+                                    int address = Integer.valueOf(binaryData[0], 16);
+                                    String address_mem = Integer.toBinaryString(address);
                                     String value = Integer.toBinaryString(Integer.parseInt(binaryData[1],16));
                                     data.simulator_memory.putMem(address,value);
                                 }
@@ -247,7 +247,7 @@ public class CPUsimGUI extends JFrame {
         final String[] columnNames = {"Address", "Value"};
         TableModel dataModel = new DefaultTableModel(data.simulator_memory.memoryArray, columnNames);
         usedMem.setModel(dataModel);
-//        System.out.println(data.simulator_memory.toString());
+        System.out.println(data.simulator_memory.toString());
     }
             /*
         Set text in JTextArea line by line.
