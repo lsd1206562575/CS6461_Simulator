@@ -129,8 +129,8 @@ public class CPUsimGUI extends JFrame {
                                     binaryData = inputHexData.split(" ");
                                     int address = Integer.valueOf(binaryData[0], 16);
                                     String address_mem = Integer.toBinaryString(address);
-                                    int value = Integer.valueOf(binaryData[1], 16);
-                                    data.simulator_memory.putMem();
+                                    String value = Integer.toBinaryString(Integer.parseInt(binaryData[1],16));
+                                    data.simulator_memory.putMem(address_mem,value);
                                 }
                             } catch (IOException e2) {
                                 e2.printStackTrace();

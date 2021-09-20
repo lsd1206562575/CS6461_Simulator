@@ -40,7 +40,7 @@ public class Memory {
         System.out.println(new Memory().toString());
         System.out.println(new Memory().showUsedMemory());
     }
-    public void putMem(int i,String value){
-        memoryArray[i][1]=value;
+    public void putMem(String i ,String value){
+        memoryArray[Integer.parseInt(i)][1]=value;
     }
 }
