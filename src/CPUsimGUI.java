@@ -95,12 +95,14 @@ public class CPUsimGUI extends JFrame {
         show.setBorder(createLineBorder(new Color(255,255,255),20));
         registerValue.setAlignmentX(20);
 
+        Input.setSize(new Dimension(400,20));
+
         //set output uneditable by users
         output.setEditable(false);
 
         setMemoryPanel();
         usedMem.setVisible(true);
-
+        /*
         runButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -143,7 +145,7 @@ public class CPUsimGUI extends JFrame {
                 }
             }
         });
-
+        */
 
 
         resetButton.addActionListener(new ActionListener() {
@@ -201,7 +203,7 @@ public class CPUsimGUI extends JFrame {
                                     data.simulator_memory.putMem(address,value);
                                     setMemoryPanel();
                                     usedMem.setVisible(true);
-                                    output.setText(output.getText()+"\n"+(address - 1)+ ": " + value );
+                                    output.setText(output.getText()+"\n"+address + ": " + value );
                                 }
                             } catch (IOException e2) {
                                 e2.printStackTrace();
