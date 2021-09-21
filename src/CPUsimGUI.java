@@ -53,7 +53,6 @@ public class CPUsimGUI extends JFrame {
     private JPanel memPanel;
     private JScrollPane memPanScroll;
     private JTable usedMem;
-    private JTextField input;
 
     Instruction data = new Instruction();
     //GUI buttons and their actions
@@ -96,12 +95,13 @@ public class CPUsimGUI extends JFrame {
         show.setBorder(createLineBorder(new Color(255,255,255),20));
         registerValue.setAlignmentX(20);
 
+        Input.setSize(new Dimension(400,20));
+
         //set output uneditable by users
         output.setEditable(false);
 
         setMemoryPanel();
         usedMem.setVisible(true);
-        /*
         runButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -127,13 +127,13 @@ public class CPUsimGUI extends JFrame {
                             }
                         }
 
-                    String[] instructionArray = Instruction[i].split(" ");
-                    boolean result = data.setInstruction(instructionArray);
-                    if (result) {
-                        refreshInterface();
-                    } else {
-                        break;
-                    }
+                        String[] instructionArray = Instruction[i].split(" ");
+                        boolean result = data.setInstruction(instructionArray);
+                        if (result) {
+                            refreshInterface();
+                        } else {
+                            break;
+                        }
                     }
                     if (i == Instruction.length) {
                         Input.setText("");
@@ -144,7 +144,6 @@ public class CPUsimGUI extends JFrame {
                 }
             }
         });
-        */
 
 
         resetButton.addActionListener(new ActionListener() {
