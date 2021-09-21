@@ -47,6 +47,6 @@ public class Memory {
         //System.out.println(new Memory().showUsedMemory());
     }
     public void putMem(int i ,String value){
-        memoryArray[i - 1][1]=value;
+        memoryArray[i][1]=value;
     }
 }

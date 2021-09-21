@@ -102,7 +102,7 @@ public class CPUsimGUI extends JFrame {
 
         setMemoryPanel();
         usedMem.setVisible(true);
-        /*
+
         runButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -145,7 +145,7 @@ public class CPUsimGUI extends JFrame {
                 }
             }
         });
-        */
+
 
 
         resetButton.addActionListener(new ActionListener() {
@@ -198,7 +198,6 @@ public class CPUsimGUI extends JFrame {
                                     String[] binaryData = null;
                                     binaryData = inputHexData.split(" ");
                                     int address = Integer.valueOf(binaryData[0], 16);
-                                    String address_mem = Integer.toBinaryString(address);
                                     String value = Integer.toBinaryString(Integer.parseInt(binaryData[1],16));
                                     data.simulator_memory.putMem(address,value);
                                     setMemoryPanel();

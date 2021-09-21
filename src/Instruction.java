@@ -182,7 +182,8 @@ public class Instruction {
     }
 
     public void derectLDR(int registerNumber, int iRegister, int address){
-        setGRegVal(registerNumber,stringToInt((String)simulator_memory.memoryArray[address + getIRegVal(iRegister)][1]));
+//        setGRegVal(registerNumber,stringToInt((String)simulator_memory.memoryArray[address + getIRegVal(iRegister)][1]));
+        setGRegVal(registerNumber, (address + getIRegVal(iRegister)));
     }
 
     /*
