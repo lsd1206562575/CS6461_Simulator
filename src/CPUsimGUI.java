@@ -52,6 +52,7 @@ public class CPUsimGUI extends JFrame {
     private JPanel memPanel;
     private JScrollPane memPanScroll;
     private JTable usedMem;
+    private JButton IPLTxtButton;
     private JTextField input;
 
     Instruction data = new Instruction();
@@ -176,11 +177,11 @@ public class CPUsimGUI extends JFrame {
             }
         });
 
-        //load from file button action
-        loadButton.addActionListener(new ActionListener() {
+        //load data from IPL.txt button action
+        IPLTxtButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if (e.getSource() == loadButton) {
+                if (e.getSource() == IPLTxtButton) {
                     JFileChooser loadFile = new JFileChooser();
                     int resp = loadFile.showOpenDialog(null);
                     if (resp == JFileChooser.APPROVE_OPTION) {
