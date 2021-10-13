@@ -9,7 +9,6 @@ public class Memory {
         for (int i=0;i<2048;i++){
             memoryArray[i][0]  =i;
             memoryArray[i][1] = "0000,0000,0000,0000";
-
         }
     }
 

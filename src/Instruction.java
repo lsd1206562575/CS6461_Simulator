@@ -168,9 +168,9 @@ public class Instruction {
         if(iRegister > 3 || iRegister<0){
             return false;
         }
-        if(address < 6 || address >= Math.pow(2, addressBit)){
-            return false;
-        }
+//        if(address < 6 || address >= Math.pow(2, addressBit)){
+//            return false;
+//        }
         return true;
     }
 
@@ -182,8 +182,10 @@ public class Instruction {
     }
 
     public void derectLDR(int registerNumber, int iRegister, int address){
+        String value = ((String)simulator_memory.memoryArray[address + getIRegVal(iRegister)][1]);
+        int parseInt = Integer.parseInt(value, 2);
 //        setGRegVal(registerNumber,stringToInt((String)simulator_memory.memoryArray[address + getIRegVal(iRegister)][1]));
-        setGRegVal(registerNumber, (address + getIRegVal(iRegister)));
+        setGRegVal(registerNumber,parseInt);
     }
 
     /*
